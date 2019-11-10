@@ -12,7 +12,7 @@ int tage_im_monat;
 
 //Arrays
 unsigned monats_laenge [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-char wochen_tage[7] = { "Monatag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag" };
+char wochen_tage[7][11]= {"Monatag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
 
 int main()
 {
@@ -76,7 +76,12 @@ int main()
 		printf("\nIhr eingegebenes Datum ist der %i. Tag im Jahr.", r);
 		
 		//____________________________ [AUFGABE 4] __________________________________
-		
+
+
+		//____________________________ [AUFGABE 5] __________________________________
+
+
+		//_________________________ [AUFGABE 6 | ZUSATZ] ____________________________
 		printf("\n\nerneute Berechnung? (j/n)\n");
 	} while (getchar() == 'j' || getchar() == 'J');
 
