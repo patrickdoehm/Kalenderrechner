@@ -6,13 +6,88 @@ PE - Kalaneder Rechnung
 #include <stdio.h>
 int tag, monat, jahr;
 int i;
+int a, b, c, d;
+int w, t, x, y;
 int r = 0;
 char response;
 int tage_im_monat;
 
 //Arrays
 unsigned monats_laenge [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-char wochen_tage[7][11]= {"Monatag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
+unsigned monatjz[13] = { 0,0,3,3,6,1,4,6,2,5,0,3,5 };
+
+void firstweekday(int tag, int monat, int jahr) {
+	tag = 1;
+	monat = 1;
+	int ergebnis = 0;
+	int tagesziffer = (tag % 7);
+	int monatsziffer = monatjz[monat];
+	int jahresziffer = ((jahr % 100) + ((jahr % 100) / 4)) % 7;
+	int jahrhundertziffer = (3 - ((jahr / 100) % 4)) * 2;
+
+	if (jahr % 4 == 0 && jahr % 100 != 0 || jahr % 400 == 0) {
+		tagesziffer = tagesziffer + 6;
+	}
+	ergebnis = (tagesziffer + monatsziffer + jahresziffer + jahrhundertziffer) % 7;
+
+	if (ergebnis == 0) {
+		printf("\nDer erste Tag im angegebenen Jahr ist ein Sonntag");
+	}
+	if (ergebnis == 1) {
+		printf("\nDer erste Tag im angegebenen Jahr ist ein Montag");
+	}
+	if (ergebnis == 2) {
+		printf("\nDer erste Tag im angegebenen Jahr ist ein Dienstag");
+	}
+	if (ergebnis == 3) {
+		printf("\nDer erste Tag im angegebenen Jahr ist ein Mittwoch");
+	}
+	if (ergebnis == 4) {
+		printf("\nDer erste Tag im angegebenen Jahr ist ein Donnerstag");
+	}
+	if (ergebnis == 5) {
+		printf("\nDer erste Tag im angegebenen Jahr ist ein Freitag");
+	}
+	if (ergebnis == 6) {
+		printf("\nDer erste Tag im angegebenen Jahr ist ein Samstag");
+	}
+}
+
+//Welcher wochentag?
+void wichweekday(int tag, int monat, int jahr) {
+	int ergebnis = 0;
+	int tagesziffer = (tag % 7);
+	int monatsziffer = monatjz[monat];
+	int jahresziffer = ((jahr % 100) + ((jahr % 100) / 4)) % 7;
+	int jahrhundertziffer = (3 - ((jahr / 100) % 4)) * 2;
+
+	if ((monat <= 2) && (jahr % 4 == 0 && jahr % 100 != 0 || jahr % 400 == 0)) {
+		tagesziffer = tagesziffer + 6;
+	}
+	ergebnis = (tagesziffer + monatsziffer + jahresziffer + jahrhundertziffer) % 7;
+
+	if (ergebnis == 0) {
+		printf("\nDer angegebene Tag ist ein Sonntag");
+	}
+	if (ergebnis == 1) {
+		printf("\nDer angegebene Tag ist ein Montag");
+	}
+	if (ergebnis == 2) {
+		printf("\nDer angegebene Tag ist ein Dienstag");
+	}
+	if (ergebnis == 3) {
+		printf("\nDer angegebene Tag ist ein Mittwoch");
+	}
+	if (ergebnis == 4) {
+		printf("\nDer angegebene Tag ist ein Donnerstag");
+	}
+	if (ergebnis == 5) {
+		printf("\nDer angegebene Tag ist ein Freitag");
+	}
+	if (ergebnis == 6) {
+		printf("\nDer angegebene Tag ist ein Samstag");
+	}
+}
 
 int main()
 {
@@ -56,7 +131,6 @@ int main()
 		}
 		//____________________________ [AUFGABE 2] __________________________________
 		
-		//monats_laenge[monat] = tage_im_monat;
 		if (tag >= 1 && tag <= monats_laenge[monat -1]) {
 			printf("\nIhr eingegebenes Datum ist korrekt.");
 		}
@@ -67,18 +141,26 @@ int main()
 
 		
 		scanf("%c", &response);
-		//____________________________ [AUFGABE 3] __________________________________
-		i = 0;													//Wird 0 gesetzt, um bei 0 anzufangen
-		for (i = 0; i <= (monat - 2); i++) {					// for-Schleife läuft so lange bis i größer ist als monat-2. Nachdem die schleife einmal durchgelaufen ist, wird i um +1 erhöht. | monat-2, um alle monate bis 1 vor eingegebenen monat zu "addieren."
-			r += monats_laenge[i];							    // monats_laenge i wird mit r addiert. "r" wird mit dem Ergebniss der addition überchrieben.
-			}
-		r += tag;												// r wird mit dem eingegebenen Tag addiert."r" wird mit dem Ergebniss dieser Addition überschrieben. 
-		printf("\nIhr eingegebenes Datum ist der %i. Tag im Jahr.", r);
-		
+		i = 0;
+		for (i = 0; i <= (monat - 2); i++) {
+
+			r += monats_laenge[i];
+		}
+		r += tag;
+		printf("\nDas Datum ist der %i. Tag im Jahr", r);
 		//____________________________ [AUFGABE 4] __________________________________
 
-
+		firstweekday(tag, monat, jahr);
 		//____________________________ [AUFGABE 5] __________________________________
+		wichweekday(tag, monat, jahr);
+
+
+		printf("\n\nerneute Berechnung? (j/n)\n");
+
+		scanf("%c", &response);
+		
+		
+	
 
 
 		//_________________________ [AUFGABE 6 | ZUSATZ] ____________________________
