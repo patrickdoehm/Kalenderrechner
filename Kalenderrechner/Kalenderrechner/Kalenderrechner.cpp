@@ -2,7 +2,7 @@
 PE - Kalaneder Rechnung
 */
 
-#define _CRT_SECURE_NO_WARNINGS 1 
+#define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
 int tag, monat, jahr;
 int i;
@@ -13,10 +13,11 @@ char response;
 int tage_im_monat;
 
 //Arrays
-unsigned monats_laenge [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+unsigned monats_laenge[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 unsigned monatjz[13] = { 0,0,3,3,6,1,4,6,2,5,0,3,5 };
 
-void firstweekday(int tag, int monat, int jahr) {
+void firstweekday(int tag, int monat, int jahr)                                    //hier wird erklärt, was die Main-Funktion später machen soll, wenn Sie die "firstweekday"-Funktion später ausführen soll (Ihr wird erklärt wie "man die steuern macht" ;P)
+{
 	tag = 1;
 	monat = 1;
 	int ergebnis = 0;
@@ -54,7 +55,7 @@ void firstweekday(int tag, int monat, int jahr) {
 }
 
 //Welcher wochentag?
-void wichweekday(int tag, int monat, int jahr) {
+void wichweekday(int tag, int monat, int jahr) {                              //hier wird erklärt, was die Main-Funktion später machen soll, wenn Sie die "wichweekday"-Funktion später ausführen soll (Ihr wird erklärt wie "man die steuern macht" ;P)
 	int ergebnis = 0;
 	int tagesziffer = (tag % 7);
 	int monatsziffer = monatjz[monat];
@@ -130,16 +131,16 @@ int main()
 			printf("\nDas von ihnen eingegebene Jahr ist kein Schaltjahr!");
 		}
 		//____________________________ [AUFGABE 2] __________________________________
-		
-		if (tag >= 1 && tag <= monats_laenge[monat -1]) {
+
+		if (tag >= 1 && tag <= monats_laenge[monat - 1]) {
 			printf("\nIhr eingegebenes Datum ist korrekt.");
 		}
-		else 
+		else
 		{
 			printf("\nIhr eingegebenes Datum ist nicht korrekt!");
 		}
 
-		
+
 		scanf("%c", &response);
 		i = 0;
 		for (i = 0; i <= (monat - 2); i++) {
@@ -150,17 +151,17 @@ int main()
 		printf("\nDas Datum ist der %i. Tag im Jahr", r);
 		//____________________________ [AUFGABE 4] __________________________________
 
-		firstweekday(tag, monat, jahr);
+		firstweekday(tag, monat, jahr); // Ruft Funktion "firstweekday" auf. (Der Main Funktion wird gesagt sie soll jetzt "die Steuern machen" ;p )
 		//____________________________ [AUFGABE 5] __________________________________
-		wichweekday(tag, monat, jahr);
+		wichweekday(tag, monat, jahr); // Ruft Funktion "wichweekday" auf. (Der Main Funktion wird gesagt sie soll jetzt "die Steuern machen" ;p )
 
 
 		printf("\n\nerneute Berechnung? (j/n)\n");
 
 		scanf("%c", &response);
-		
-		
-	
+
+
+
 
 
 		//_________________________ [AUFGABE 6 | ZUSATZ] ____________________________
@@ -168,4 +169,3 @@ int main()
 	} while (getchar() == 'j' || getchar() == 'J');
 
 }
-
